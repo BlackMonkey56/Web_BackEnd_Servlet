@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	//전송 버튼 눌렀을 때 패스워드가 비었으면 경고창 띄우기
+	//취미는 하나이상 선택되도록 하기
+	function sub(){
+		var pass = document.getElementById("pass").value;
+		var hobbies = document.frm.hobby;
+		
+		if(pass.length === 0){
+			alert("패스워드 입력바랍니다.")
+			return false;
+		}
+		
+		var count = 0;
+		for(var i = 0; i < hobbies.length; i++){
+			if(hobbies[i].checked){
+				count++;
+			}
+		}
+		
+		if(count === 0){
+			alert("취미를 1개 이상 입력바랍니다.")
+			return false;
+		}
+		
+		return true;
+	}
+	
+</script>
+</head>
+<body>
+	<h2 align='center'>Form test..</h2>
+	<form action="MFS" method="post" name="frm" onsubmit="return sub()">
+		ID : <Input type="text" name="id" required="required"><br><br>
+		PASS : <Input type="password" name="password" id="pass"><br><br>
+		HOBBY : 
+		요리하기 <input type="checkbox" name="hobby" value="cook">
+		커피내리기 <input type="checkbox" name="hobby" value="coffee">
+		운전하기 <input type="checkbox" name="hobby" value="driving">
+		클래식 듣기 <input type="checkbox" name="hobby" value="music"><br><br>
+		
+		성 별 : 여<input type="radio" name="gender" value="Female">
+			    남<input type="radio" name="gender" value="Male"><br><br>
+			    
+		<input type="hidden" name="command" value="register"><br><br>
+		
+		<hr>
+		<select multiple="multiple" name="tel">
+			<option value="">019</option>
+			<option value="SK C&C">017</option>
+			<option value="">011</option>
+			<option value="">010</option>
+		</select>
+		
+		<hr>
+		<textarea rows="10" cols="60" name="intro">
+			ssafy 사이트를 방문해주셔서 감사합니다.
+		</textarea><br><br>
+		<input type="submit" value="send" >
+		<input type="reset" value="clear">
+		<input type="button" value="button">
+	</form>
+</body>
+</html>
