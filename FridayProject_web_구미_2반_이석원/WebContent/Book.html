@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	span{
+		color: orange;
+		padding-right: 5px;
+	}
+	
+	.main{
+		width: 700px;
+		margin: 0 auto;
+		margin: 100px;
+		border: 2px solid black;
+		padding: 50px;
+	}
+	
+	.frm{
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	
+	.row{
+		padding-top: 10px;
+		padding-bottom: 10px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	
+	.row div:first-child {
+		width: 80px;
+		display: flex;
+		justify-content: flex-end;
+		padding-right: 10px;
+	}
+	
+</style>
+<script>
+	function cancel(){
+		location.href="index.html";	
+	}
+	
+	function formCheck(){
+		var isbn = document.frm.isbn;
+		var title = document.frm.title;
+		var type = document.frm.types;
+		var writer = document.frm.writer;
+		
+		for(var i = 0; i < isbn.length; i++){
+			if(isbn[i].value.trim() === ""){
+				alert("도서번호 입력해주세요");
+				isbn[i].focus();
+				return false;
+			}
+		}
+		
+		if(title.value.trim() === ""){
+			alert("도서제목 입력해주세요");
+			title.focus();
+			return false;
+		}
+		
+		if(type.value === "#"){
+			alert("도서종류를 선택해주세요.");
+			type.focus();
+			return false;
+		}
+		
+		if(writer.value.trim() === ""){
+			alert("저자를 입력해주세요.");
+			writer.focus();
+			return false;
+		}
+		
+		return true;
+	}
+</script>
+</head>
+<body>
+	<div class="main">
+		<h1>도서 등록 화면</h1>
+		<h4><span>*</span>표시가 된 항목은 필수 입력 항목입니다.</h4>
+		<form action="main" method="post" name="frm" class="frm" onsubmit="return formCheck()">
+			<div class="row">
+				<div><span>*</span>도서번호</div>
+				<div>
+					<input type="text" name="isbn">-<input type="text" name="isbn">-<input type="text" name="isbn">
+				</div>
+			</div>
+			<div class="row">
+				<div><span>*</span>도서제목</div>
+				<div><input type="text" name="title"></div>
+			</div>
+			<div class="row">
+				<div><span>*</span>도서종류</div>
+				<div>
+					<select name="catalogue">
+						<option value="#">해당 항목을 선택하시오.</option>
+						<option value="소설">소설</option>
+						<option value="에세이">에세이</option>
+						<option value="컴퓨터/IT">컴퓨터/IT</option>
+						<option value="잡지">잡지</option>
+						<option value="자기계발">자기계발</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div>출판국가</div>
+				<div>
+					<input type="radio" name="nation" value="국내도서">국내도서 <input type="radio" name="country" value="외국도서">외국도서
+				</div>
+			</div>
+			<div class="row">
+				<div>출판일</div>
+				<div>
+					<input type="date" name="publishdate">
+				</div>
+			</div>
+			<div class="row">
+				<div>출판사</div>
+				<div>
+					<select name="publisher">
+						<option value="#">해당 항목을 선택하시오.</option>
+						<option value="가나다출판사">가나다출판사</option>
+						<option value="abc출판사">abc출판사</option>
+						<option value="사이버출판사">사이버출판사</option>
+						<option value="도레미출판사">도레미출판사</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div><span>*</span>저  자</div>
+				<div><input type="text" name="author"></div>
+			</div>
+			<div class="row">
+				<div>도서가격</div>
+				<div>
+					<input type="number" name="price">
+					<select name="currency">
+						<option value="원">원</option>
+						<option value="달러">달러</option>
+						<option value="엔">엔</option>
+						<option value="유로">유로</option>
+						<option value="위안">위안</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div>요약내용</div>
+				<div><textarea rows="3" cols="80" name="description"></textarea></div>
+			</div>
+			<div class="row">
+				<input type="submit" value=도서등록>
+				<input type="button" value="취소" onclick="cancel()">
+			</div>
+			<input type="hidden" name="action" value="save">
+		</form>
+	</div>
+</body>
+</html>
